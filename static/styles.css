@@ -1,0 +1,123 @@
+:root {
+  --bg: #0b1223;
+  --fg: #e5e7eb;
+  --muted: #9ca3af;
+  --panel: #0f172acc;
+  --border: #1f2937;
+  --accent: #60a5fa;
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+
+/***********************************************************
+ * TOP BAR
+ ***********************************************************/
+#topbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 10px 12px;
+  z-index: 500;
+  border-bottom: 0px solid var(--border); /* no border */
+}
+
+#topbar .row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+#topbar .controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.top-bar-text {
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#topbar input,
+#topbar select {
+  background: #0b1223;
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 6px;
+  min-width: 90px;
+}
+
+#topbar button {
+  background: var(--accent);
+  color: #0b1223;
+  border: 0;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/***********************************************************
+ * MAP LAYOUT
+ * Map fills the background; plot overlays the bottom.
+ ***********************************************************/
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0vh;  /* plotBar will overlay bottom portion */
+  z-index: 1;
+}
+
+/***********************************************************
+ * PLOT BAR AREA
+ ***********************************************************/
+#plotBar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40vh;         /* overall height of the plot area */
+  z-index: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-top: 0px solid var(--border);
+  overflow: hidden;
+}
+
+/* Only show border ABOVE the plot *after* data has loaded */
+#plotBar.loaded #plot {
+  border-top: 2px solid black;
+  margin-top: 10px;
+}
+
+#plot {
+  width: 100%;
+  height: 100%;
+}
+
+/* For images */
+#plotBar img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
